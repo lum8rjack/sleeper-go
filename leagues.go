@@ -6,7 +6,8 @@ import (
 )
 
 const (
-	leagueEndpoint string = "/league"
+	leagueEndpoint     string = "/league"
+	sportStateEndpoint string = "/state"
 )
 
 type League struct {
@@ -124,6 +125,18 @@ type League struct {
 	Avatar                string      `json:"avatar"`
 }
 
+type SportState struct {
+	Week               int    `json:"week"`
+	SeasonType         string `json:"season_type"`
+	SeasonStartDate    string `json:"season_start_date"`
+	Season             string `json:"season"`
+	PreviousSeason     string `json:"previous_season"`
+	Leg                int    `json:"leg"`
+	LeagueSeason       string `json:"league_season"`
+	LeagueCreateSeason string `json:"league_create_season"`
+	DisplayWeek        int    `json:"display_week"`
+}
+
 // Get all leagues for a specific user, sport, and season
 func (c *Client) GetAllLeagesForUser(user_id string, sport string, season string) ([]League, error) {
 	leagues := []League{}
@@ -155,4 +168,19 @@ func (c *Client) GetLeague(league_id string) (League, error) {
 	err = json.Unmarshal(data, &league)
 
 	return league, err
+}
+
+// Get information about the current state for any sport
+func (c *Client) GetSportState(sport string) (SportState, error) {
+	sportstate := SportState{}
+
+	url := fmt.Sprintf("%s%s/%s", c.sleeperURL, sportStateEndpoint, sport)
+
+	data, err := c.getRequest(url)
+	if err != nil {
+		return sportstate, err
+	}
+
+	err = json.Unmarshal(data, &sportstate)
+	return sportstate, err
 }
