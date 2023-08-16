@@ -57,13 +57,13 @@ type League struct {
 	SeasonType      string `json:"season_type"`
 	Season          string `json:"season"`
 	ScoringSettings struct {
-		StFf         float64 `json:"st_ff"`
-		PtsAllow713  float64 `json:"pts_allow_7_13"`
-		DefStFf      float64 `json:"def_st_ff"`
-		RecYd        float64 `json:"rec_yd"`
-		FumRecTd     float64 `json:"fum_rec_td"`
-		PtsAllow35P  int     `json:"pts_allow_35p"`
-		PtsAllow2834 int     `json:"pts_allow_28_34"`
+		StFf         float32 `json:"st_ff"`
+		PtsAllow713  float32 `json:"pts_allow_7_13"`
+		DefStFf      float32 `json:"def_st_ff"`
+		RecYd        float32 `json:"rec_yd"`
+		FumRecTd     float32 `json:"fum_rec_td"`
+		PtsAllow35P  float32 `json:"pts_allow_35p"`
+		PtsAllow2834 float32 `json:"pts_allow_28_34"`
 		Fum          float64 `json:"fum"`
 		RushYd       float64 `json:"rush_yd"`
 		PassTd       float64 `json:"pass_td"`
@@ -79,26 +79,26 @@ type League struct {
 		PtsAllow2127 float64 `json:"pts_allow_21_27"`
 		Fgm2029      float64 `json:"fgm_20_29"`
 		PtsAllow16   float64 `json:"pts_allow_1_6"`
-		FumLost      int     `json:"fum_lost"`
-		DefStFumRec  float64 `json:"def_st_fum_rec"`
-		Int          float64 `json:"int"`
-		Fgm019       float64 `json:"fgm_0_19"`
-		PtsAllow1420 float64 `json:"pts_allow_14_20"`
-		Rec          float64 `json:"rec"`
-		Ff           float64 `json:"ff"`
-		Fgmiss       int     `json:"fgmiss"`
-		StFumRec     float64 `json:"st_fum_rec"`
-		Rec2Pt       float64 `json:"rec_2pt"`
-		RushTd       float64 `json:"rush_td"`
-		Xpmiss       int     `json:"xpmiss"`
-		Fgm3039      float64 `json:"fgm_30_39"`
-		RecTd        float64 `json:"rec_td"`
-		StTd         float64 `json:"st_td"`
-		Pass2Pt      float64 `json:"pass_2pt"`
-		PtsAllow0    float64 `json:"pts_allow_0"`
-		PassInt      int     `json:"pass_int"`
-		Fgm4049      float64 `json:"fgm_40_49"`
-		Sack         float64 `json:"sack"`
+		FumLost      float32 `json:"fum_lost"`
+		DefStFumRec  float32 `json:"def_st_fum_rec"`
+		Int          float32 `json:"int"`
+		Fgm019       float32 `json:"fgm_0_19"`
+		PtsAllow1420 float32 `json:"pts_allow_14_20"`
+		Rec          float32 `json:"rec"`
+		Ff           float32 `json:"ff"`
+		Fgmiss       float32 `json:"fgmiss"`
+		StFumRec     float32 `json:"st_fum_rec"`
+		Rec2Pt       float32 `json:"rec_2pt"`
+		RushTd       float32 `json:"rush_td"`
+		Xpmiss       float32 `json:"xpmiss"`
+		Fgm3039      float32 `json:"fgm_30_39"`
+		RecTd        float32 `json:"rec_td"`
+		StTd         float32 `json:"st_td"`
+		Pass2Pt      float32 `json:"pass_2pt"`
+		PtsAllow0    float32 `json:"pts_allow_0"`
+		PassInt      float32 `json:"pass_int"`
+		Fgm4049      float32 `json:"fgm_40_49"`
+		Sack         float32 `json:"sack"`
 	} `json:"scoring_settings"`
 	RosterPositions       []string    `json:"roster_positions"`
 	PreviousLeagueID      string      `json:"previous_league_id"`
