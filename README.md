@@ -29,7 +29,7 @@ Go library for the [Sleeper](https://sleeper.com/) fantasy sports free read-only
     * [ ] Get traded picks in a draft - `GET https://api.sleeper.app/v1/draft/<draft_id>/traded_picks`
 * [ ] Players
     * [ ] Fedtch all players - `GET https://api.sleeper.app/v1/players/nfl`
-    * [ ] Trending players - `GET https://api.sleeper.app/v1/players/<sport>/trending/<type>?lookback_hours=<hours>&limit=<int>`
+    * [x] Trending players - `GET https://api.sleeper.app/v1/players/<sport>/trending/<type>?lookback_hours=<hours>&limit=<int>`
 
 
 ## License
