@@ -132,8 +132,8 @@ type SportState struct {
 	DisplayWeek        int    `json:"display_week"`
 }
 
-// Get all leagues for a specific user, sport, and season
-// GET https://api.sleeper.app/v1/user/<user_id>/leagues/<sport>/<season>
+// Get all leagues for a specific user, sport, and season.
+// (GET `https://api.sleeper.app/v1/user/<user_id>/leagues/<sport>/<season>`)
 func (c *Client) GetAllLeagesForUser(user_id string, sport string, season string) ([]League, error) {
 	leagues := []League{}
 
@@ -149,8 +149,8 @@ func (c *Client) GetAllLeagesForUser(user_id string, sport string, season string
 	return leagues, err
 }
 
-// Get a specific league by the league_id
-// GET https://api.sleeper.app/v1/league/<league_id>
+// Get a specific league by the league_id.
+// (GET `https://api.sleeper.app/v1/league/<league_id>`)
 func (c *Client) GetLeague(league_id string) (League, error) {
 	league := League{}
 
@@ -166,8 +166,8 @@ func (c *Client) GetLeague(league_id string) (League, error) {
 	return league, err
 }
 
-// Get information about the current state for any sport
-// GET https://api.sleeper.app/v1/state/<sport>
+// Get information about the current state for any sport.
+// (GET `https://api.sleeper.app/v1/state/<sport>`)
 func (c *Client) GetSportState(sport string) (SportState, error) {
 	sportstate := SportState{}
 

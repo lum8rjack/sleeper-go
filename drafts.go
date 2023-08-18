@@ -51,8 +51,8 @@ type Draft struct {
 	Created         int64       `json:"created"`
 }
 
-// Get all drafts by a user
-// GET https://api.sleeper.app/v1/user/<user_id>/drafts/<sport>/<season>
+// Get all drafts by a user.
+// (GET `https://api.sleeper.app/v1/user/<user_id>/drafts/<sport>/<season>`)
 func (c *Client) GetDraftsForUser(user_id string, sport string, season int) ([]Draft, error) {
 	drafts := []Draft{}
 
@@ -68,8 +68,8 @@ func (c *Client) GetDraftsForUser(user_id string, sport string, season int) ([]D
 	return drafts, err
 }
 
-// Get all drafts for a league
-// GET https://api.sleeper.app/v1/league/<league_id>/drafts
+// Get all drafts for a league.
+// (GET `https://api.sleeper.app/v1/league/<league_id>/drafts`)
 func (c *Client) GetDraftsForLeague(league_id string) ([]Draft, error) {
 	drafts := []Draft{}
 
@@ -85,8 +85,8 @@ func (c *Client) GetDraftsForLeague(league_id string) ([]Draft, error) {
 	return drafts, err
 }
 
-// Get a specific draft
-// GET https://api.sleeper.app/v1/draft/<draft_id>
+// Get a specific draft.
+// (GET `https://api.sleeper.app/v1/draft/<draft_id>`)
 func (c *Client) GetDraft(draft_id string) (Draft, error) {
 	draft := Draft{}
 

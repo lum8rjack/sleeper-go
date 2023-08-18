@@ -11,7 +11,7 @@ type TrendingPlayer struct {
 }
 
 // Get a list of trending players based on adds or drops in the past 24 hours. Trending type is add or drop.
-// GET https://api.sleeper.app/v1/players/<sport>/trending/<type>
+// (GET `https://api.sleeper.app/v1/players/<sport>/trending/<type>`)
 func (c *Client) GetTrendingPlayers(sport string, trending_type string) ([]TrendingPlayer, error) {
 	trendingPlayer := []TrendingPlayer{}
 
@@ -28,7 +28,7 @@ func (c *Client) GetTrendingPlayers(sport string, trending_type string) ([]Trend
 }
 
 // Get a list of trending players based on adds or drops in the past X hours. Trending type is add or drop.
-// GET https://api.sleeper.app/v1/players/<sport>/trending/<type>?lookback_hours=<hours>&limit=<int>
+// (GET `https://api.sleeper.app/v1/players/<sport>/trending/<type>?lookback_hours=<hours>&limit=<int>`)
 func (c *Client) GetTrendingPlayersParams(sport string, trending_type string, hours int, limit int) ([]TrendingPlayer, error) {
 	trendingPlayer := []TrendingPlayer{}
 

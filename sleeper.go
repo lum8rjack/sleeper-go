@@ -22,13 +22,13 @@ var (
 	}
 )
 
-// Client for interacting with the read-only Sleeper API
+// Client for interacting with the read-only Sleeper API.
 type Client struct {
 	httpClient *http.Client
 	sleeperURL string
 }
 
-// Create a new Sleeper Client
+// Create a new Sleeper Client.
 func NewClient() Client {
 	client := Client{
 		httpClient: &http.Client{
@@ -39,7 +39,7 @@ func NewClient() Client {
 	return client
 }
 
-// Send a basic HTTP GET request
+// Send a basic HTTP GET request.
 func (c *Client) getRequest(url string) ([]byte, error) {
 	resp, err := c.httpClient.Get(url)
 	if err != nil {
