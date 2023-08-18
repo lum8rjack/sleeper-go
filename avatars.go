@@ -6,16 +6,16 @@ const (
 	avatarBaseURL string = "https://sleepercdn.com/avatars"
 )
 
-// Gets the user's avatar picture
+// Get the user's avatar picture
+// GET https://sleepercdn.com/avatars/<avatar_id>
 func (c *Client) GetAvatar(avatar_id string) ([]byte, error) {
-	// https://sleepercdn.com/avatars/<avatar_id>
 	url := fmt.Sprintf("%s/%s", avatarBaseURL, avatar_id)
 	return c.getRequest(url)
 }
 
-// Gets the user's avatar picture thumbnail
+// Get the user's avatar picture thumbnail
+// GET https://sleepercdn.com/avatars/thumbs/<avatar_id>
 func (c *Client) GetAvatarThumbnail(avatar_id string) ([]byte, error) {
-	// https://sleepercdn.com/avatars/thumbs/<avatar_id>
 	url := fmt.Sprintf("%s/thumbs/%s", avatarBaseURL, avatar_id)
 	return c.getRequest(url)
 }

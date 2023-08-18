@@ -29,16 +29,16 @@ type User struct {
 	Avatar         string      `json:"avatar"`
 }
 
-// Gets the user's information by their username
+// Get the user's information by their username
+// GET https://api.sleeper.app/v1/user/<username>
 func (c *Client) GetUserByUsername(username string) (User, error) {
-	// https://api.sleeper.app/v1/user/<username>
 	url := fmt.Sprintf("%s/user/%s", c.sleeperURL, username)
 	return c.getUser(url)
 }
 
-// Gets the user's information by their user id
+// Get the user's information by their user id
+// GET https://api.sleeper.app/v1/user/<user_id>
 func (c *Client) GetUserByID(id string) (User, error) {
-	// https://api.sleeper.app/v1/user/<user_id>
 	url := fmt.Sprintf("%s/user/%s", c.sleeperURL, id)
 	return c.getUser(url)
 }

@@ -52,10 +52,10 @@ type Draft struct {
 }
 
 // Get all drafts by a user
+// GET https://api.sleeper.app/v1/user/<user_id>/drafts/<sport>/<season>
 func (c *Client) GetDraftsForUser(user_id string, sport string, season int) ([]Draft, error) {
 	drafts := []Draft{}
 
-	// https://api.sleeper.app/v1/user/<user_id>/drafts/<sport>/<season>
 	url := fmt.Sprintf("%s/user/%s/drafts/%s/%d", c.sleeperURL, user_id, sport, season)
 
 	data, err := c.getRequest(url)
@@ -69,10 +69,10 @@ func (c *Client) GetDraftsForUser(user_id string, sport string, season int) ([]D
 }
 
 // Get all drafts for a league
+// GET https://api.sleeper.app/v1/league/<league_id>/drafts
 func (c *Client) GetDraftsForLeague(league_id string) ([]Draft, error) {
 	drafts := []Draft{}
 
-	// https://api.sleeper.app/v1/league/<league_id>/drafts
 	url := fmt.Sprintf("%s/league/%s/drafts", c.sleeperURL, league_id)
 
 	data, err := c.getRequest(url)
@@ -86,10 +86,10 @@ func (c *Client) GetDraftsForLeague(league_id string) ([]Draft, error) {
 }
 
 // Get a specific draft
+// GET https://api.sleeper.app/v1/draft/<draft_id>
 func (c *Client) GetDraft(draft_id string) (Draft, error) {
 	draft := Draft{}
 
-	// https://api.sleeper.app/v1/draft/<draft_id>
 	url := fmt.Sprintf("%s/draft/%s", c.sleeperURL, draft_id)
 
 	data, err := c.getRequest(url)

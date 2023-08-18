@@ -28,7 +28,7 @@ type Client struct {
 	sleeperURL string
 }
 
-// Creates a new Sleeper Client
+// Create a new Sleeper Client
 func NewClient() Client {
 	client := Client{
 		httpClient: &http.Client{
