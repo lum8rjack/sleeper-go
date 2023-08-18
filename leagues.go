@@ -5,11 +5,6 @@ import (
 	"fmt"
 )
 
-const (
-	leagueEndpoint     string = "/league"
-	sportStateEndpoint string = "/state"
-)
-
 type League struct {
 	TotalRosters int    `json:"total_rosters"`
 	Status       string `json:"status"`
@@ -158,7 +153,8 @@ func (c *Client) GetAllLeagesForUser(user_id string, sport string, season string
 func (c *Client) GetLeague(league_id string) (League, error) {
 	league := League{}
 
-	url := fmt.Sprintf("%s%s/%s", c.sleeperURL, leagueEndpoint, league_id)
+	// https://api.sleeper.app/v1/league/<league_id>
+	url := fmt.Sprintf("%s/league/%s", c.sleeperURL, league_id)
 
 	data, err := c.getRequest(url)
 	if err != nil {
@@ -174,7 +170,8 @@ func (c *Client) GetLeague(league_id string) (League, error) {
 func (c *Client) GetSportState(sport string) (SportState, error) {
 	sportstate := SportState{}
 
-	url := fmt.Sprintf("%s%s/%s", c.sleeperURL, sportStateEndpoint, sport)
+	// https://api.sleeper.app/v1/state/<sport>
+	url := fmt.Sprintf("%s/state/%s", c.sleeperURL, sport)
 
 	data, err := c.getRequest(url)
 	if err != nil {

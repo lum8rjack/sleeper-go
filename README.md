@@ -22,9 +22,9 @@ Go library for the [Sleeper](https://sleeper.com/) fantasy sports free read-only
     * [ ] Get traded picks - `GET https://api.sleeper.app/v1/league/<league_id>/traded_picks`
     * [x] Get sport state - `GET https://api.sleeper.app/v1/state/<sport>`
 * [ ] Drafts
-    * [ ] Get all drafts for user - `GET https://api.sleeper.app/v1/user/<user_id>/drafts/<sport>/<season>`
-    * [ ] Get all drafts for a league - `GET https://api.sleeper.app/v1/league/<league_id>/drafts`
-    * [ ] Get a specific draft - `GET https://api.sleeper.app/v1/draft/<draft_id>`
+    * [x] Get all drafts for user - `GET https://api.sleeper.app/v1/user/<user_id>/drafts/<sport>/<season>`
+    * [x] Get all drafts for a league - `GET https://api.sleeper.app/v1/league/<league_id>/drafts`
+    * [x] Get a specific draft - `GET https://api.sleeper.app/v1/draft/<draft_id>`
     * [ ] Get all picks in a draft - `GET https://api.sleeper.app/v1/draft/<draft_id>/picks`
     * [ ] Get traded picks in a draft - `GET https://api.sleeper.app/v1/draft/<draft_id>/traded_picks`
 * [ ] Players

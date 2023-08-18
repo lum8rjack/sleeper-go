@@ -52,6 +52,9 @@ func (c *Client) getRequest(url string) ([]byte, error) {
 		if ok {
 			e := fmt.Sprintf("web request error: %d %s\n", resp.StatusCode, val)
 			return nil, errors.New(e)
+		} else {
+			e := fmt.Sprintf("web request error: %d\n", resp.StatusCode)
+			return nil, errors.New(e)
 		}
 	}
 
