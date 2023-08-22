@@ -148,6 +148,33 @@ type Roster struct {
 	CoOwners interface{} `json:"co_owners"`
 }
 
+type LeagueUser struct {
+	UserID      string      `json:"user_id"`
+	Settings    interface{} `json:"settings"`
+	LeagueID    string      `json:"league_id"`
+	IsOwner     interface{} `json:"is_owner"`
+	IsBot       bool        `json:"is_bot"`
+	DisplayName string      `json:"display_name"`
+	Avatar      string      `json:"avatar"`
+	Metadata    []struct {
+		UserMessagePn           string `json:"user_message_pn"`
+		TransactionWaiver       string `json:"transaction_waiver"`
+		TransactionTrade        string `json:"transaction_trade"`
+		TransactionFreeAgent    string `json:"transaction_free_agent"`
+		TransactionCommissioner string `json:"transaction_commissioner"`
+		TradeBlockPn            string `json:"trade_block_pn"`
+		TeamNameUpdate          string `json:"team_name_update"`
+		TeamName                string `json:"team_name"`
+		PlayerNicknameUpdate    string `json:"player_nickname_update"`
+		PlayerLikePn            string `json:"player_like_pn"`
+		MentionPn               string `json:"mention_pn"`
+		MascotMessage           string `json:"mascot_message"`
+		Avatar                  string `json:"avatar"`
+		AllowSms                string `json:"allow_sms"`
+		AllowPn                 string `json:"allow_pn"`
+	} `json:"metadata,omitempty"`
+}
+
 type SportState struct {
 	Week               int    `json:"week"`
 	SeasonType         string `json:"season_type"`
@@ -219,6 +246,23 @@ func (c *Client) GetRosters(league_id string) ([]Roster, error) {
 
 	err = json.Unmarshal(data, &rosters)
 	return rosters, err
+}
+
+// Get all users in a league.
+// (GET `https://api.sleeper.app/v1/league/<league_id>/users`)
+func (c *Client) GetLeagueUsers(league_id string) ([]LeagueUser, error) {
+	leagueUsers := []LeagueUser{}
+
+	url := fmt.Sprintf("%s/league/%s/users", c.sleeperURL, league_id)
+
+	data, err := c.getRequest(url)
+	if err != nil {
+		return leagueUsers, err
+	}
+
+	err = json.Unmarshal(data, &leagueUsers)
+
+	return leagueUsers, err
 }
 
 // Get information about the current state for any sport.
