@@ -59,21 +59,21 @@ type League struct {
 		FumRecTd     float32 `json:"fum_rec_td"`
 		PtsAllow35P  float32 `json:"pts_allow_35p"`
 		PtsAllow2834 float32 `json:"pts_allow_28_34"`
-		Fum          float64 `json:"fum"`
-		RushYd       float64 `json:"rush_yd"`
-		PassTd       float64 `json:"pass_td"`
-		BlkKick      float64 `json:"blk_kick"`
-		PassYd       float64 `json:"pass_yd"`
-		Safe         float64 `json:"safe"`
-		DefTd        float64 `json:"def_td"`
-		Fgm50P       float64 `json:"fgm_50p"`
-		DefStTd      float64 `json:"def_st_td"`
-		FumRec       float64 `json:"fum_rec"`
-		Rush2Pt      float64 `json:"rush_2pt"`
-		Xpm          float64 `json:"xpm"`
-		PtsAllow2127 float64 `json:"pts_allow_21_27"`
-		Fgm2029      float64 `json:"fgm_20_29"`
-		PtsAllow16   float64 `json:"pts_allow_1_6"`
+		Fum          float32 `json:"fum"`
+		RushYd       float32 `json:"rush_yd"`
+		PassTd       float32 `json:"pass_td"`
+		BlkKick      float32 `json:"blk_kick"`
+		PassYd       float32 `json:"pass_yd"`
+		Safe         float32 `json:"safe"`
+		DefTd        float32 `json:"def_td"`
+		Fgm50P       float32 `json:"fgm_50p"`
+		DefStTd      float32 `json:"def_st_td"`
+		FumRec       float32 `json:"fum_rec"`
+		Rush2Pt      float32 `json:"rush_2pt"`
+		Xpm          float32 `json:"xpm"`
+		PtsAllow2127 float32 `json:"pts_allow_21_27"`
+		Fgm2029      float32 `json:"fgm_20_29"`
+		PtsAllow16   float32 `json:"pts_allow_1_6"`
 		FumLost      float32 `json:"fum_lost"`
 		DefStFumRec  float32 `json:"def_st_fum_rec"`
 		Int          float32 `json:"int"`
@@ -133,7 +133,7 @@ type SportState struct {
 }
 
 type Matchup struct {
-	StartersPoints []int              `json:"starters_points"`
+	StartersPoints []float32          `json:"starters_points"`
 	Starters       []string           `json:"starters"`
 	RosterID       int                `json:"roster_id"`
 	Players        []string           `json:"players"`
