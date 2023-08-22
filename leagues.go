@@ -120,6 +120,34 @@ type League struct {
 	Avatar                string      `json:"avatar"`
 }
 
+type Roster struct {
+	Taxi     interface{} `json:"taxi"`
+	Starters []string    `json:"starters"`
+	Settings struct {
+		Wins             int `json:"wins"`
+		WaiverPosition   int `json:"waiver_position"`
+		WaiverBudgetUsed int `json:"waiver_budget_used"`
+		TotalMoves       int `json:"total_moves"`
+		Ties             int `json:"ties"`
+		Losses           int `json:"losses"`
+		Fpts             int `json:"fpts"`
+	} `json:"settings"`
+	RosterID  int         `json:"roster_id"`
+	Reserve   interface{} `json:"reserve"`
+	Players   []string    `json:"players"`
+	PlayerMap interface{} `json:"player_map"`
+	OwnerID   string      `json:"owner_id"`
+	Metadata  struct {
+		RestrictPnScoringStartersOnly string `json:"restrict_pn_scoring_starters_only"`
+		AllowPnScoring                string `json:"allow_pn_scoring"`
+		AllowPnPlayerInjuryStatus     string `json:"allow_pn_player_injury_status"`
+		AllowPnInactiveStarters       string `json:"allow_pn_inactive_starters"`
+	} `json:"metadata"`
+	LeagueID string      `json:"league_id"`
+	Keepers  interface{} `json:"keepers"`
+	CoOwners interface{} `json:"co_owners"`
+}
+
 type SportState struct {
 	Week               int    `json:"week"`
 	SeasonType         string `json:"season_type"`
@@ -175,6 +203,22 @@ func (c *Client) GetLeague(league_id string) (League, error) {
 	err = json.Unmarshal(data, &league)
 
 	return league, err
+}
+
+// Get all rosters in a league.
+// (GET `https://api.sleeper.app/v1/league/<league_id>/rosters`)
+func (c *Client) GetRosters(league_id string) ([]Roster, error) {
+	rosters := []Roster{}
+
+	url := fmt.Sprintf("%s/league/%s/rosters", c.sleeperURL, league_id)
+
+	data, err := c.getRequest(url)
+	if err != nil {
+		return rosters, err
+	}
+
+	err = json.Unmarshal(data, &rosters)
+	return rosters, err
 }
 
 // Get information about the current state for any sport.
