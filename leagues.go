@@ -132,6 +132,17 @@ type SportState struct {
 	DisplayWeek        int    `json:"display_week"`
 }
 
+type Matchup struct {
+	StartersPoints []int              `json:"starters_points"`
+	Starters       []string           `json:"starters"`
+	RosterID       int                `json:"roster_id"`
+	Players        []string           `json:"players"`
+	MatchupID      int                `json:"matchup_id"`
+	Points         float32            `json:"points"`
+	CustomPoints   float32            `json:"custom_points"`
+	PlayersPoints  map[string]float32 `json:"players_points"`
+}
+
 // Get all leagues for a specific user, sport, and season.
 // (GET `https://api.sleeper.app/v1/user/<user_id>/leagues/<sport>/<season>`)
 func (c *Client) GetAllLeagesForUser(user_id string, sport string, season string) ([]League, error) {
@@ -180,4 +191,20 @@ func (c *Client) GetSportState(sport string) (SportState, error) {
 
 	err = json.Unmarshal(data, &sportstate)
 	return sportstate, err
+}
+
+// Get all matchups in a league for a given week. Each object in the list represents one team. The two teams with the same matchup_id match up against each other.
+// (GET `https://api.sleeper.app/v1/league/<league_id>/matchups/<week>`)
+func (c *Client) GetMatchups(league_id string, week int) ([]Matchup, error) {
+	matchups := []Matchup{}
+
+	url := fmt.Sprintf("%s/leage/%s/matchups/%d", c.sleeperURL, league_id, week)
+
+	data, err := c.getRequest(url)
+	if err != nil {
+		return matchups, err
+	}
+
+	err = json.Unmarshal(data, &matchups)
+	return matchups, err
 }
