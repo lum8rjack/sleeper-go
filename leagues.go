@@ -198,7 +198,7 @@ func (c *Client) GetSportState(sport string) (SportState, error) {
 func (c *Client) GetMatchups(league_id string, week int) ([]Matchup, error) {
 	matchups := []Matchup{}
 
-	url := fmt.Sprintf("%s/leage/%s/matchups/%d", c.sleeperURL, league_id, week)
+	url := fmt.Sprintf("%s/league/%s/matchups/%d", c.sleeperURL, league_id, week)
 
 	data, err := c.getRequest(url)
 	if err != nil {
