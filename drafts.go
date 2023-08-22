@@ -51,6 +51,30 @@ type Draft struct {
 	Created         int64       `json:"created"`
 }
 
+type DraftPlayer struct {
+	Round    int    `json:"round"`
+	RosterID int    `json:"roster_id"`
+	PlayerID string `json:"player_id"`
+	PickedBy string `json:"picked_by"`
+	PickNo   int    `json:"pick_no"`
+	Metadata struct {
+		YearsExp     string `json:"years_exp"`
+		Team         string `json:"team"`
+		Status       string `json:"status"`
+		Sport        string `json:"sport"`
+		Position     string `json:"position"`
+		PlayerID     string `json:"player_id"`
+		Number       string `json:"number"`
+		NewsUpdated  string `json:"news_updated"`
+		LastName     string `json:"last_name"`
+		InjuryStatus string `json:"injury_status"`
+		FirstName    string `json:"first_name"`
+	} `json:"metadata"`
+	IsKeeper  interface{} `json:"is_keeper"`
+	DraftSlot int         `json:"draft_slot"`
+	DraftID   string      `json:"draft_id"`
+}
+
 // Get all drafts by a user.
 // (GET `https://api.sleeper.app/v1/user/<user_id>/drafts/<sport>/<season>`)
 func (c *Client) GetDraftsForUser(user_id string, sport string, season int) ([]Draft, error) {
@@ -100,4 +124,21 @@ func (c *Client) GetDraft(draft_id string) (Draft, error) {
 	err = json.Unmarshal(data, &draft)
 
 	return draft, err
+}
+
+// Get all picks in a draft.
+// (GET `https://api.sleeper.app/v1/draft/<draft_id>/picks`)
+func (c *Client) GetAllDraftPicks(draft_id string) ([]DraftPlayer, error) {
+	draftPlayers := []DraftPlayer{}
+
+	url := fmt.Sprintf("%s/draft/%s/picks", c.sleeperURL, draft_id)
+
+	data, err := c.getRequest(url)
+	if err != nil {
+		return draftPlayers, err
+	}
+
+	err = json.Unmarshal(data, &draftPlayers)
+
+	return draftPlayers, err
 }
