@@ -53,7 +53,7 @@ type Player struct {
 	SearchRank            int         `json:"search_rank"`
 	Sport                 string      `json:"sport"`
 	SportradarID          string      `json:"sportradar_id"`
-	StatsID               string      `json:"stats_id"`
+	StatsID               int         `json:"stats_id"`
 	Status                string      `json:"status"`
 	SwishID               int         `json:"swish_id"`
 	Team                  string      `json:"team"`
