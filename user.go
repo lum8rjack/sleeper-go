@@ -6,27 +6,27 @@ import (
 )
 
 type User struct {
-	Verification   interface{} `json:"verification"`
-	Username       string      `json:"username"`
-	UserID         string      `json:"user_id"`
-	Token          interface{} `json:"token"`
-	SummonerRegion interface{} `json:"summoner_region"`
-	SummonerName   interface{} `json:"summoner_name"`
-	Solicitable    interface{} `json:"solicitable"`
-	RealName       interface{} `json:"real_name"`
-	Phone          interface{} `json:"phone"`
-	Pending        interface{} `json:"pending"`
-	Notifications  interface{} `json:"notifications"`
-	Metadata       interface{} `json:"metadata"`
-	IsBot          bool        `json:"is_bot"`
-	Email          interface{} `json:"email"`
-	DisplayName    string      `json:"display_name"`
-	Deleted        interface{} `json:"deleted"`
-	DataUpdated    interface{} `json:"data_updated"`
-	Currencies     interface{} `json:"currencies"`
-	Created        interface{} `json:"created"`
-	Cookies        interface{} `json:"cookies"`
 	Avatar         string      `json:"avatar"`
+	Cookies        interface{} `json:"cookies"`
+	Created        interface{} `json:"created"`
+	Currencies     interface{} `json:"currencies"`
+	DataUpdated    interface{} `json:"data_updated"`
+	Deleted        interface{} `json:"deleted"`
+	DisplayName    string      `json:"display_name"`
+	Email          interface{} `json:"email"`
+	IsBot          bool        `json:"is_bot"`
+	Metadata       interface{} `json:"metadata"`
+	Notifications  interface{} `json:"notifications"`
+	Pending        interface{} `json:"pending"`
+	Phone          interface{} `json:"phone"`
+	RealName       interface{} `json:"real_name"`
+	Solicitable    interface{} `json:"solicitable"`
+	SummonerName   interface{} `json:"summoner_name"`
+	SummonerRegion interface{} `json:"summoner_region"`
+	Token          interface{} `json:"token"`
+	UserID         string      `json:"user_id"`
+	Username       string      `json:"username"`
+	Verification   interface{} `json:"verification"`
 }
 
 // Get the user's information by their username.

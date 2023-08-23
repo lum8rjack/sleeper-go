@@ -6,49 +6,49 @@ import (
 )
 
 type Draft struct {
-	Type           string      `json:"type"`
-	Status         string      `json:"status"`
-	StartTime      int64       `json:"start_time"`
-	Sport          string      `json:"sport"`
-	SlotToRosterID interface{} `json:"slot_to_roster_id"`
-	Settings       struct {
-		Teams                 int `json:"teams"`
-		SlotsWr               int `json:"slots_wr"`
-		SlotsTe               int `json:"slots_te"`
-		SlotsRb               int `json:"slots_rb"`
-		SlotsQb               int `json:"slots_qb"`
-		SlotsK                int `json:"slots_k"`
-		SlotsFlex             int `json:"slots_flex"`
-		SlotsDef              int `json:"slots_def"`
-		SlotsBn               int `json:"slots_bn"`
-		Rounds                int `json:"rounds"`
-		ReversalRound         int `json:"reversal_round"`
-		PlayerType            int `json:"player_type"`
-		PickTimer             int `json:"pick_timer"`
-		NominationTimer       int `json:"nomination_timer"`
-		EnforcePositionLimits int `json:"enforce_position_limits"`
-		CPUAutopick           int `json:"cpu_autopick"`
-		Autostart             int `json:"autostart"`
-		AutopauseStartTime    int `json:"autopause_start_time"`
-		AutopauseEndTime      int `json:"autopause_end_time"`
-		AutopauseEnabled      int `json:"autopause_enabled"`
-		AlphaSort             int `json:"alpha_sort"`
-	} `json:"settings"`
-	SeasonType string `json:"season_type"`
-	Season     string `json:"season"`
-	Metadata   struct {
-		ScoringType string `json:"scoring_type"`
-		Name        string `json:"name"`
-		Description string `json:"description"`
-	} `json:"metadata"`
-	LeagueID        string      `json:"league_id"`
-	LastPicked      int64       `json:"last_picked"`
+	Created         int64       `json:"created"`
+	Creators        interface{} `json:"creators"`
+	DraftID         string      `json:"draft_id"`
+	DraftOrder      interface{} `json:"draft_order"`
 	LastMessageTime int64       `json:"last_message_time"`
 	LastMessageID   string      `json:"last_message_id"`
-	DraftOrder      interface{} `json:"draft_order"`
-	DraftID         string      `json:"draft_id"`
-	Creators        interface{} `json:"creators"`
-	Created         int64       `json:"created"`
+	LastPicked      int64       `json:"last_picked"`
+	LeagueID        string      `json:"league_id"`
+	Metadata        struct {
+		Description string `json:"description"`
+		Name        string `json:"name"`
+		ScoringType string `json:"scoring_type"`
+	} `json:"metadata"`
+	Settings struct {
+		AlphaSort             int `json:"alpha_sort"`
+		AutopauseEnabled      int `json:"autopause_enabled"`
+		AutopauseEndTime      int `json:"autopause_end_time"`
+		AutopauseStartTime    int `json:"autopause_start_time"`
+		Autostart             int `json:"autostart"`
+		CPUAutopick           int `json:"cpu_autopick"`
+		EnforcePositionLimits int `json:"enforce_position_limits"`
+		NominationTimer       int `json:"nomination_timer"`
+		PickTimer             int `json:"pick_timer"`
+		PlayerType            int `json:"player_type"`
+		ReversalRound         int `json:"reversal_round"`
+		Rounds                int `json:"rounds"`
+		SlotsBn               int `json:"slots_bn"`
+		SlotsDef              int `json:"slots_def"`
+		SlotsFlex             int `json:"slots_flex"`
+		SlotsK                int `json:"slots_k"`
+		SlotsQb               int `json:"slots_qb"`
+		SlotsRb               int `json:"slots_rb"`
+		SlotsTe               int `json:"slots_te"`
+		SlotsWr               int `json:"slots_wr"`
+		Teams                 int `json:"teams"`
+	} `json:"settings"`
+	Season         string      `json:"season"`
+	SeasonType     string      `json:"season_type"`
+	SlotToRosterID interface{} `json:"slot_to_roster_id"`
+	Sport          string      `json:"sport"`
+	StartTime      int64       `json:"start_time"`
+	Status         string      `json:"status"`
+	Type           string      `json:"type"`
 }
 
 type DraftPlayer struct {
@@ -76,11 +76,11 @@ type DraftPlayer struct {
 }
 
 type TradedPick struct {
-	Season          string `json:"season"`
+	OwnerID         int    `json:"owner_id"`
+	PreviousOwnerID int    `json:"previous_owner_id"`
 	Round           int    `json:"round"`
 	RosterID        int    `json:"roster_id"`
-	PreviousOwnerID int    `json:"previous_owner_id"`
-	OwnerID         int    `json:"owner_id"`
+	Season          string `json:"season"`
 }
 
 // Get all drafts by a user.
