@@ -325,6 +325,23 @@ func (c *Client) GetTransactions(league_id string, round int) ([]Transaction, er
 	return transactions, err
 }
 
+// Get all traded picks in a league, including future picks.
+// (GET `https://api.sleeper.app/v1/league/<league_id>/traded_picks`)
+func (c *Client) GetLeagueTradedPicks(league_id string) ([]TradedPick, error) {
+	tradedPicks := []TradedPick{}
+
+	url := fmt.Sprintf("%s/league/%s/traded_picks", c.sleeperURL, league_id)
+
+	data, err := c.getRequest(url)
+	if err != nil {
+		return tradedPicks, err
+	}
+
+	err = json.Unmarshal(data, &tradedPicks)
+
+	return tradedPicks, err
+}
+
 // Get information about the current state for any sport.
 // (GET `https://api.sleeper.app/v1/state/<sport>`)
 func (c *Client) GetSportState(sport string) (SportState, error) {

@@ -153,7 +153,7 @@ func (c *Client) GetAllDraftPicks(draft_id string) ([]DraftPlayer, error) {
 
 // Get all traded picks in a draft.
 // (GET `https://api.sleeper.app/v1/draft/<draft_id>/traded_picks`)
-func (c *Client) GetAllTradedPicks(draft_id string) ([]TradedPick, error) {
+func (c *Client) GetDraftTradedPicks(draft_id string) ([]TradedPick, error) {
 	tradedPicks := []TradedPick{}
 
 	url := fmt.Sprintf("%s/draft/%s/traded_picks", c.sleeperURL, draft_id)
