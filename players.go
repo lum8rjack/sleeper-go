@@ -22,8 +22,8 @@ type Player struct {
 	BirthState            interface{} `json:"birth_state"`
 	College               string      `json:"college"`
 	DepthChartOrder       int         `json:"depth_chart_order"`
-	DepthChartPosition    int         `json:"depth_chart_position"`
-	EspnID                string      `json:"espn_id"`
+	DepthChartPosition    string      `json:"depth_chart_position"`
+	EspnID                int         `json:"espn_id"`
 	FantasyDataID         int         `json:"fantasy_data_id"`
 	FantasyPositions      []string    `json:"fantasy_positions"`
 	FirstName             string      `json:"first_name"`
