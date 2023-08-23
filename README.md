@@ -2,7 +2,7 @@
 Go library for the [Sleeper](https://sleeper.com/) fantasy sports free read-only API. According to their [documentation](https://docs.sleeper.com), stay under 1000 API calls per minute, otherwise, you risk being IP-blocked.
 
 
-## Status of implementations
+## Sleeper API Implementation Status
 
 * [x] User
     * [x] User object - `GET https://api.sleeper.app/v1/user/<username>`
@@ -10,14 +10,14 @@ Go library for the [Sleeper](https://sleeper.com/) fantasy sports free read-only
 * [x] Avatars
     * [x] Full size URL - `GET https://sleepercdn.com/avatars/<avatar_id>`
     * [x] Thumbnail URL - `GET https://sleepercdn.com/avatars/thumbs/<avatar_id>`
-* [ ] Leagues
+* [x] Leagues
     * [x] Get all leagues for user - `GET https://api.sleeper.app/v1/user/<user_id>/leagues/<sport>/<season>`
     * [x] Get a specific league - `GET https://api.sleeper.app/v1/league/<league_id>`
     * [x] Get rosters in a league - `GET https://api.sleeper.app/v1/league/<league_id>/rosters`
     * [x] Get users in a league - `GET https://api.sleeper.app/v1/league/<league_id>/users`
     * [x] Get matchups in a league - `GET https://api.sleeper.app/v1/league/<league_id>/matchups/<week>`
-    * [ ] Get the playoff bracket (winners bracket) - `GET https://api.sleeper.app/v1/league/<league_id>/winners_bracket`
-    * [ ] Get the playoff bracket (loses bracket) - `GET https://api.sleeper.app/v1/league/<league_id>/loses_bracket`
+    * [x] Get the playoff bracket (winners bracket) - `GET https://api.sleeper.app/v1/league/<league_id>/winners_bracket`
+    * [x] Get the playoff bracket (loses bracket) - `GET https://api.sleeper.app/v1/league/<league_id>/loses_bracket`
     * [x] Get transactions - `GET https://api.sleeper.app/v1/league/<league_id>/transactions/<round>`
     * [x] Get traded picks - `GET https://api.sleeper.app/v1/league/<league_id>/traded_picks`
     * [x] Get sport state - `GET https://api.sleeper.app/v1/state/<sport>`

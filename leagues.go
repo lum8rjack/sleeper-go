@@ -186,6 +186,24 @@ type Matchup struct {
 	PlayersPoints  map[string]float32 `json:"players_points"`
 }
 
+type PlayoffRound struct {
+	L      int `json:"l"`
+	M      int `json:"m"`
+	P      int `json:"p,omitempty"`
+	R      int `json:"r"`
+	T1     int `json:"t1"`
+	T2     int `json:"t2"`
+	W      int `json:"w"`
+	T1From struct {
+		L int `json:"l,omitempty"`
+		W int `json:"w,omitempty"`
+	} `json:"t1_from,omitempty"`
+	T2From struct {
+		L int `json:"l,omitempty"`
+		W int `json:"w,omitempty"`
+	} `json:"t2_from,omitempty"`
+}
+
 type Transaction struct {
 	WaiverBudget []struct {
 		Sender   int `json:"sender"`
@@ -307,6 +325,38 @@ func (c *Client) GetMatchups(league_id string, week int) ([]Matchup, error) {
 
 	err = json.Unmarshal(data, &matchups)
 	return matchups, err
+}
+
+// Get the playoff winners bracket for a league for 4, 6, and 8 team playoffs.
+// (GET `https://api.sleeper.app/v1/league/<league_id>/winners_bracket`)
+func (c *Client) GetPlayoffsWinnersBracket(league_id string) ([]PlayoffRound, error) {
+	playoffRounds := []PlayoffRound{}
+
+	url := fmt.Sprintf("%s/league/%s/winners_bracket", c.sleeperURL, league_id)
+
+	data, err := c.getRequest(url)
+	if err != nil {
+		return playoffRounds, err
+	}
+
+	err = json.Unmarshal(data, &playoffRounds)
+	return playoffRounds, err
+}
+
+// Get the playoff losers bracket for a league for 4, 6, and 8 team playoffs.
+// (GET `https://api.sleeper.app/v1/league/<league_id>/losers_bracket`)
+func (c *Client) GetPlayoffsLosersBracket(league_id string) ([]PlayoffRound, error) {
+	playoffRounds := []PlayoffRound{}
+
+	url := fmt.Sprintf("%s/league/%s/losers_bracket", c.sleeperURL, league_id)
+
+	data, err := c.getRequest(url)
+	if err != nil {
+		return playoffRounds, err
+	}
+
+	err = json.Unmarshal(data, &playoffRounds)
+	return playoffRounds, err
 }
 
 // Get all free agent transactions, waivers and trades.
