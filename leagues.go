@@ -175,6 +175,45 @@ type LeagueUser struct {
 	} `json:"metadata,omitempty"`
 }
 
+type Matchup struct {
+	StartersPoints []float32          `json:"starters_points"`
+	Starters       []string           `json:"starters"`
+	RosterID       int                `json:"roster_id"`
+	Players        []string           `json:"players"`
+	MatchupID      int                `json:"matchup_id"`
+	Points         float32            `json:"points"`
+	CustomPoints   float32            `json:"custom_points"`
+	PlayersPoints  map[string]float32 `json:"players_points"`
+}
+
+type Transaction struct {
+	WaiverBudget []struct {
+		Sender   int `json:"sender"`
+		Receiver int `json:"receiver"`
+		Amount   int `json:"amount"`
+	} `json:"waiver_budget"`
+	Type          string         `json:"type"`
+	TransactionID string         `json:"transaction_id"`
+	StatusUpdated int64          `json:"status_updated"`
+	Status        string         `json:"status"`
+	Settings      interface{}    `json:"settings"`
+	RosterIds     []int          `json:"roster_ids"`
+	Metadata      interface{}    `json:"metadata"`
+	Leg           int            `json:"leg"`
+	Drops         map[string]int `json:"drops"`
+	DraftPicks    []struct {
+		Season          string `json:"season"`
+		Round           int    `json:"round"`
+		RosterID        int    `json:"roster_id"`
+		PreviousOwnerID int    `json:"previous_owner_id"`
+		OwnerID         int    `json:"owner_id"`
+	} `json:"draft_picks"`
+	Creator      string         `json:"creator"`
+	Created      int64          `json:"created"`
+	ConsenterIds []int          `json:"consenter_ids"`
+	Adds         map[string]int `json:"adds"`
+}
+
 type SportState struct {
 	Week               int    `json:"week"`
 	SeasonType         string `json:"season_type"`
@@ -185,17 +224,6 @@ type SportState struct {
 	LeagueSeason       string `json:"league_season"`
 	LeagueCreateSeason string `json:"league_create_season"`
 	DisplayWeek        int    `json:"display_week"`
-}
-
-type Matchup struct {
-	StartersPoints []float32          `json:"starters_points"`
-	Starters       []string           `json:"starters"`
-	RosterID       int                `json:"roster_id"`
-	Players        []string           `json:"players"`
-	MatchupID      int                `json:"matchup_id"`
-	Points         float32            `json:"points"`
-	CustomPoints   float32            `json:"custom_points"`
-	PlayersPoints  map[string]float32 `json:"players_points"`
 }
 
 // Get all leagues for a specific user, sport, and season.
@@ -265,22 +293,6 @@ func (c *Client) GetLeagueUsers(league_id string) ([]LeagueUser, error) {
 	return leagueUsers, err
 }
 
-// Get information about the current state for any sport.
-// (GET `https://api.sleeper.app/v1/state/<sport>`)
-func (c *Client) GetSportState(sport string) (SportState, error) {
-	sportstate := SportState{}
-
-	url := fmt.Sprintf("%s/state/%s", c.sleeperURL, sport)
-
-	data, err := c.getRequest(url)
-	if err != nil {
-		return sportstate, err
-	}
-
-	err = json.Unmarshal(data, &sportstate)
-	return sportstate, err
-}
-
 // Get all matchups in a league for a given week. Each object in the list represents one team. The two teams with the same matchup_id match up against each other.
 // (GET `https://api.sleeper.app/v1/league/<league_id>/matchups/<week>`)
 func (c *Client) GetMatchups(league_id string, week int) ([]Matchup, error) {
@@ -295,4 +307,36 @@ func (c *Client) GetMatchups(league_id string, week int) ([]Matchup, error) {
 
 	err = json.Unmarshal(data, &matchups)
 	return matchups, err
+}
+
+// Get all free agent transactions, waivers and trades.
+// (GET `https://api.sleeper.app/v1/league/<league_id>/transactions/<round>`)
+func (c *Client) GetTransactions(league_id string, round int) ([]Transaction, error) {
+	transactions := []Transaction{}
+
+	url := fmt.Sprintf("%s/league/%s/transactions/%d", c.sleeperURL, league_id, round)
+
+	data, err := c.getRequest(url)
+	if err != nil {
+		return transactions, err
+	}
+
+	err = json.Unmarshal(data, &transactions)
+	return transactions, err
+}
+
+// Get information about the current state for any sport.
+// (GET `https://api.sleeper.app/v1/state/<sport>`)
+func (c *Client) GetSportState(sport string) (SportState, error) {
+	sportstate := SportState{}
+
+	url := fmt.Sprintf("%s/state/%s", c.sleeperURL, sport)
+
+	data, err := c.getRequest(url)
+	if err != nil {
+		return sportstate, err
+	}
+
+	err = json.Unmarshal(data, &sportstate)
+	return sportstate, err
 }

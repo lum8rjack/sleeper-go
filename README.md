@@ -18,7 +18,7 @@ Go library for the [Sleeper](https://sleeper.com/) fantasy sports free read-only
     * [x] Get matchups in a league - `GET https://api.sleeper.app/v1/league/<league_id>/matchups/<week>`
     * [ ] Get the playoff bracket (winners bracket) - `GET https://api.sleeper.app/v1/league/<league_id>/winners_bracket`
     * [ ] Get the playoff bracket (loses bracket) - `GET https://api.sleeper.app/v1/league/<league_id>/loses_bracket`
-    * [ ] Get transactions - `GET https://api.sleeper.app/v1/league/<league_id>/transactions/<round>`
+    * [x] Get transactions - `GET https://api.sleeper.app/v1/league/<league_id>/transactions/<round>`
     * [ ] Get traded picks - `GET https://api.sleeper.app/v1/league/<league_id>/traded_picks`
     * [x] Get sport state - `GET https://api.sleeper.app/v1/state/<sport>`
 * [x] Drafts
