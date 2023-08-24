@@ -154,7 +154,7 @@ type LeagueUser struct {
 	IsBot       bool        `json:"is_bot"`
 	IsOwner     interface{} `json:"is_owner"`
 	LeagueID    string      `json:"league_id"`
-	Metadata    []struct {
+	Metadata    struct {
 		AllowPn                 string `json:"allow_pn"`
 		AllowSms                string `json:"allow_sms"`
 		Avatar                  string `json:"avatar"`
