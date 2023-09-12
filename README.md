@@ -1,23 +1,6 @@
 # sleeper-go
 Go library for the [Sleeper](https://sleeper.com/) fantasy sports free read-only API. According to their [documentation](https://docs.sleeper.com), stay under 1000 API calls per minute, otherwise, you risk being IP-blocked.
 
-## Players
-
-The players API is not intended to be called every time you need to look up players due to the large file size. It should not be called more than once per day.
-
-With this in mind, I have create methods to save the players information to disk and read the saved file from disk. 
-
-```go
-// Get all players - use this sparingly
-func (c *Client) GetAllPlayers(sport string) (Players, error)
-
-// Get all players and save the details to a file
-func (c *Client) SaveAllPlayers(sport string, file string) (bool, error)
-
-// Get all players from a saved file
-func GetAllPlayers(file string) (Players, error)
-```
-
 ## Usage
 Example code that gets the users for the specified league and outputs their display name and team name.
 
@@ -51,6 +34,57 @@ Sample output:
 2KSports (Team name: Game of End Zones)
 TOBOT (Team name: Saving Matt Ryan)
 ...
+```
+
+## Custom Methods
+
+I created a few custom methods that require correlating results from multiple API calls in order to receive the data.
+
+### GetMatchups
+
+This method gets the matchups for the specified week and returns each team and their wins and losses.
+```go
+type TeamMatchup struct {
+	Teamname1   string
+	Teamname2   string
+	Team1Losses int
+	Team2Losses int
+	Team1Wins   int
+	Team2Wins   int
+}
+
+func (c *Client) GetTeamMatchups(league_id string, week int) ([]TeamMatchup, error)
+```
+
+### GetScoreboards
+
+This method gets the scoreboard for each matchup for the specified week and returns each team and points.
+```go
+type Scoreboard struct {
+	Teamname1 string  `json:"teamname_1"`
+	Teamname2 string  `json:"teamname_2"`
+	Points1   float32 `json:"points_1"`
+	Points2   float32 `json:"points_2"`
+}
+
+func (c *Client) GetScoreboards(league_id string, week int) ([]Scoreboard, error)
+```
+
+### Players
+
+The players API is not intended to be called every time you need to look up players due to the large file size. It should not be called more than once per day.
+
+With this in mind, I have created additional methods to save the players information to disk and read the saved file from disk. 
+
+```go
+// Get all players - use this sparingly
+func (c *Client) GetAllPlayers(sport string) (Players, error)
+
+// Get all players and save the details to a file
+func (c *Client) SaveAllPlayers(sport string, file string) (bool, error)
+
+// Get all players from a saved file
+func GetAllPlayers(file string) (Players, error)
 ```
 
 ## Sleeper API Implementation Status

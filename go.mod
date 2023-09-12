@@ -1,3 +1,3 @@
 module github.com/lum8rjack/sleeper-go
 
-go 1.20
+go 1.21
