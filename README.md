@@ -117,6 +117,19 @@ func GetAllPlayers(file string) (Players, error)
     * [x] Trending players - `GET https://api.sleeper.app/v1/players/<sport>/trending/<type>?lookback_hours=<hours>&limit=<int>`
 
 
+## Undocumented Endpoint
+
+It was discovered that there are multiple undocumented API endpoints.
+
+* [ ] Undocumented
+    * [x] Get NFL player projections - `GET https://api.sleeper.app/projections/nfl/<season>/<week>?season_type=regular&position[]=FLEX&position[]=K&position[]=QB&position[]=RB&position[]=TE&position[]=WR&position[]=DEF`
+    * [x] Get NFL player season stats - `GET https://api.sleeper.app/stats/nfl/player/<player id>?season_type=<regular or post>&season=<season>`
+    * [x] Get specific NFL player - `GET https://api.sleeper.app/players/nfl/<player id>`
+    * [x] Get NFL players research - `GET https://api.sleeper.app/players/nfl/research/<regular or post>/<year>/<week>`
+    * [x] Get NFL team depth chart - `GET https://api.sleeper.app/players/nfl/<team>/depth_chart`
+    * [x] Get NFL schedule - `GET https://api.sleeper.app/schedule/nfl/<regular or post>/<year>`
+
+
 ## License
 
 MIT

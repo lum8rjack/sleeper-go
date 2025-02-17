@@ -14,32 +14,38 @@ type TrendingPlayer struct {
 type Players map[string]Player
 
 type Player struct {
-	Active                bool        `json:"active"`
-	Age                   int         `json:"age"`
-	BirthCity             interface{} `json:"birth_city"`
-	BirthCountry          string      `json:"birth_country"`
-	BirthDate             string      `json:"birth_date"`
-	BirthState            interface{} `json:"birth_state"`
-	College               string      `json:"college"`
-	DepthChartOrder       int         `json:"depth_chart_order"`
-	DepthChartPosition    string      `json:"depth_chart_position"`
-	EspnID                int         `json:"espn_id"`
-	FantasyDataID         int         `json:"fantasy_data_id"`
-	FantasyPositions      []string    `json:"fantasy_positions"`
-	FirstName             string      `json:"first_name"`
-	FullName              string      `json:"full_name"`
-	GsisID                string      `json:"gsis_id"`
-	Hashtag               string      `json:"hashtag"`
-	Height                string      `json:"height"`
-	HighSchool            string      `json:"high_school"`
-	InjuryBodyPart        string      `json:"injury_body_part"`
-	InjuryNotes           string      `json:"injury_notes"`
-	InjuryStartDate       interface{} `json:"injury_start_date"`
-	InjuryStatus          string      `json:"injury_status"`
-	LastName              string      `json:"last_name"`
-	Metadata              interface{} `json:"metadata"`
+	Active             bool        `json:"active"`
+	Age                int         `json:"age"`
+	BirthCity          interface{} `json:"birth_city"`
+	BirthCountry       string      `json:"birth_country"`
+	BirthDate          string      `json:"birth_date"`
+	BirthState         interface{} `json:"birth_state"`
+	College            string      `json:"college"`
+	Competitions       []any       `json:"competitions"`
+	DepthChartOrder    int         `json:"depth_chart_order"`
+	DepthChartPosition string      `json:"depth_chart_position"`
+	EspnID             int         `json:"espn_id"`
+	FantasyDataID      int         `json:"fantasy_data_id"`
+	FantasyPositions   []string    `json:"fantasy_positions"`
+	FirstName          string      `json:"first_name"`
+	FullName           string      `json:"full_name"`
+	GsisID             string      `json:"gsis_id"`
+	Hashtag            string      `json:"hashtag"`
+	Height             string      `json:"height"`
+	HighSchool         string      `json:"high_school"`
+	InjuryBodyPart     string      `json:"injury_body_part"`
+	InjuryNotes        string      `json:"injury_notes"`
+	InjuryStartDate    interface{} `json:"injury_start_date"`
+	InjuryStatus       string      `json:"injury_status"`
+	LastName           string      `json:"last_name"`
+	Metadata           struct {
+		ChannelID  string `json:"channel_id"`
+		RookieYear string `json:"rookie_year"`
+	} `json:"metadata"`
 	NewsUpdated           int64       `json:"news_updated"`
 	Number                int         `json:"number"`
+	OddsJamID             string      `json:"oddsjam_id"`
+	OptaID                interface{} `json:"opta_id"`
 	PandascoreID          interface{} `json:"pandascore_id"`
 	PlayerID              string      `json:"player_id"`
 	Position              string      `json:"position"`
@@ -57,6 +63,8 @@ type Player struct {
 	Status                string      `json:"status"`
 	SwishID               int         `json:"swish_id"`
 	Team                  string      `json:"team"`
+	TeamAbbr              interface{} `json:"team_abbr"`
+	TeamChangedAt         interface{} `json:"team_changed_at"`
 	Weight                string      `json:"weight"`
 	YahooID               int         `json:"yahoo_id"`
 	YearsExp              int         `json:"years_exp"`
