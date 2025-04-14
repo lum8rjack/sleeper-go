@@ -2,7 +2,9 @@ package sleeper
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
+	"time"
 )
 
 type NflSchedule []struct {
@@ -23,7 +25,12 @@ func (c *Client) GetNflSchedule(year int, postseason bool) (NflSchedule, error) 
 		reg = "post"
 	}
 
-	url := fmt.Sprintf("%s/schedule/nfl/%s", sleeperUndocumentedURL, reg)
+	// Sleeper only has data from 2009 to present
+	if year < 2009 || year > time.Now().Year() {
+		return schedule, errors.New("invalid year - must be between 2008 and current")
+	}
+
+	url := fmt.Sprintf("%s/schedule/nfl/%s/%d", sleeperUndocumentedURL, reg, year)
 
 	data, err := c.getRequest(url)
 	if err != nil {
