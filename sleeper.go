@@ -1,11 +1,20 @@
+// Package sleeper provides a client for interacting with the Sleeper API.
+//
+// The Sleeper API is a read-only API that provides data about NFL games, players, and teams.
+// Be mindful of the frequency of calls. A general rule is to stay under 1000 API calls per minute, otherwise, you risk being IP-blocked.
+//
+// The API is documented at https://docs.sleeper.app/api.
 package sleeper
 
 import (
+	"context"
 	"errors"
 	"fmt"
 	"io"
 	"net/http"
 	"time"
+
+	"golang.org/x/time/rate"
 )
 
 const (
@@ -27,6 +36,14 @@ var (
 type Client struct {
 	httpClient *http.Client
 	sleeperURL string
+	limiter    *rate.Limiter
+}
+
+// ClientOption is a function that modifies a Client.
+type ClientOptions struct {
+	BaseURL   string
+	Timeout   time.Duration
+	RateLimit float64 // Rate limit in requests per second
 }
 
 // Create a new Sleeper Client.
@@ -36,12 +53,51 @@ func NewClient() Client {
 			Timeout: time.Minute,
 		},
 		sleeperURL: sleeperBaseURL,
+		limiter:    rate.NewLimiter(rate.Limit(1000/60), 1), // Default: 1000 req/min, burst 1
 	}
 	return client
 }
 
+// NewClientWithOptions creates a new Sleeper Client with the given options.
+func NewClientWithOptions(opts ClientOptions) Client {
+	client := Client{
+		httpClient: &http.Client{
+			Timeout: time.Minute,
+		},
+		sleeperURL: sleeperBaseURL,
+		limiter:    rate.NewLimiter(rate.Limit(1000/60), 1), // Default: 1000 req/min, burst 1
+	}
+
+	// Set the timeout for the HTTP client
+	if opts.Timeout > 0 {
+		client.httpClient.Timeout = opts.Timeout
+	}
+
+	// Set the base URL for the Sleeper API
+	if opts.BaseURL != "" {
+		client.sleeperURL = opts.BaseURL
+	}
+
+	// Set the rate limit for the Sleeper API
+	if opts.RateLimit > 0 {
+		client.limiter = rate.NewLimiter(rate.Limit(opts.RateLimit), 1)
+	}
+
+	return client
+}
+
+// Get the base URL for the Sleeper API.
+func (c *Client) BaseURL() string {
+	return c.sleeperURL
+}
+
 // Send a basic HTTP GET request.
 func (c *Client) getRequest(url string) ([]byte, error) {
+	// Wait for rate limiter
+	if err := c.limiter.Wait(context.Background()); err != nil {
+		return nil, err
+	}
+
 	resp, err := c.httpClient.Get(url)
 	if err != nil {
 		return nil, err
