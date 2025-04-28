@@ -30,7 +30,7 @@ func (c *Client) GetNflSchedule(year int, postseason bool) (NflSchedule, error) 
 		return schedule, errors.New("invalid year - must be between 2008 and current")
 	}
 
-	url := fmt.Sprintf("%s/schedule/nfl/%s/%d", sleeperUndocumentedURL, reg, year)
+	url := fmt.Sprintf("%s/schedule/nfl/%s/%d", c.sleeperURL, reg, year)
 
 	data, err := c.getRequest(url)
 	if err != nil {

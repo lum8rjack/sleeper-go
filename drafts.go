@@ -88,7 +88,7 @@ type TradedPick struct {
 func (c *Client) GetDraftsForUser(user_id string, sport string, season int) ([]Draft, error) {
 	drafts := []Draft{}
 
-	url := fmt.Sprintf("%s/user/%s/drafts/%s/%d", c.sleeperURL, user_id, sport, season)
+	url := fmt.Sprintf("%s/v1/user/%s/drafts/%s/%d", c.sleeperURL, user_id, sport, season)
 
 	data, err := c.getRequest(url)
 	if err != nil {
@@ -105,7 +105,7 @@ func (c *Client) GetDraftsForUser(user_id string, sport string, season int) ([]D
 func (c *Client) GetDraftsForLeague(league_id string) ([]Draft, error) {
 	drafts := []Draft{}
 
-	url := fmt.Sprintf("%s/league/%s/drafts", c.sleeperURL, league_id)
+	url := fmt.Sprintf("%s/v1/league/%s/drafts", c.sleeperURL, league_id)
 
 	data, err := c.getRequest(url)
 	if err != nil {
@@ -122,7 +122,7 @@ func (c *Client) GetDraftsForLeague(league_id string) ([]Draft, error) {
 func (c *Client) GetDraft(draft_id string) (Draft, error) {
 	draft := Draft{}
 
-	url := fmt.Sprintf("%s/draft/%s", c.sleeperURL, draft_id)
+	url := fmt.Sprintf("%s/v1/draft/%s", c.sleeperURL, draft_id)
 
 	data, err := c.getRequest(url)
 	if err != nil {
@@ -139,7 +139,7 @@ func (c *Client) GetDraft(draft_id string) (Draft, error) {
 func (c *Client) GetAllDraftPicks(draft_id string) ([]DraftPlayer, error) {
 	draftPlayers := []DraftPlayer{}
 
-	url := fmt.Sprintf("%s/draft/%s/picks", c.sleeperURL, draft_id)
+	url := fmt.Sprintf("%s/v1/draft/%s/picks", c.sleeperURL, draft_id)
 
 	data, err := c.getRequest(url)
 	if err != nil {
@@ -156,7 +156,7 @@ func (c *Client) GetAllDraftPicks(draft_id string) ([]DraftPlayer, error) {
 func (c *Client) GetDraftTradedPicks(draft_id string) ([]TradedPick, error) {
 	tradedPicks := []TradedPick{}
 
-	url := fmt.Sprintf("%s/draft/%s/traded_picks", c.sleeperURL, draft_id)
+	url := fmt.Sprintf("%s/v1/draft/%s/traded_picks", c.sleeperURL, draft_id)
 
 	data, err := c.getRequest(url)
 	if err != nil {

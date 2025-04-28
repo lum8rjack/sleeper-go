@@ -81,7 +81,7 @@ type Projections []struct {
 func (c *Client) GetNflProjections(season int, week int) (Projections, error) {
 	projections := Projections{}
 
-	url := fmt.Sprintf("%s/projections/nfl/%d/%d?eason_type=regular&position[]=FLEX&position[]=K&position[]=QB&position[]=RB&position[]=TE&position[]=WR&position[]=DEF", sleeperUndocumentedURL, season, week)
+	url := fmt.Sprintf("%s/projections/nfl/%d/%d?eason_type=regular&position[]=FLEX&position[]=K&position[]=QB&position[]=RB&position[]=TE&position[]=WR&position[]=DEF", c.sleeperURL, season, week)
 
 	data, err := c.getRequest(url)
 	if err != nil {

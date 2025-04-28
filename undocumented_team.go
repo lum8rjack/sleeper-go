@@ -38,7 +38,7 @@ type TeamDepthChart struct {
 func (c *Client) GetNflTeamDepthChart(team string) (TeamDepthChart, error) {
 	tdc := TeamDepthChart{}
 
-	url := fmt.Sprintf("%s/player/nfl/%s/depth_chart", sleeperUndocumentedURL, team)
+	url := fmt.Sprintf("%s/players/nfl/%s/depth_chart", c.sleeperURL, team)
 
 	data, err := c.getRequest(url)
 	if err != nil {

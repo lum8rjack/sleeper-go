@@ -151,7 +151,7 @@ type PlayerStats struct {
 func (c *Client) GetNflPlayer(playerID int) (Player, error) {
 	player := Player{}
 
-	url := fmt.Sprintf("%s/player/nfl/%d", sleeperUndocumentedURL, playerID)
+	url := fmt.Sprintf("%s/player/nfl/%d", c.sleeperURL, playerID)
 
 	data, err := c.getRequest(url)
 	if err != nil {
@@ -172,7 +172,7 @@ func (c *Client) GetNflPlayerResearch(year int, week int, postseason bool) (map[
 		reg = "post"
 	}
 
-	url := fmt.Sprintf("%s/player/nfl/research/%s/%d/%d", sleeperUndocumentedURL, reg, year, week)
+	url := fmt.Sprintf("%s/players/nfl/research/%s/%d/%d", c.sleeperURL, reg, year, week)
 
 	data, err := c.getRequest(url)
 	if err != nil {
@@ -193,7 +193,7 @@ func (c *Client) GetNflPlayerSeasonStats(playerID int, year int, postseason bool
 		reg = "post"
 	}
 
-	url := fmt.Sprintf("%s/stats/nfl/player/%d?season_type=%s&season=%d", sleeperUndocumentedURL, playerID, reg, year)
+	url := fmt.Sprintf("%s/stats/nfl/player/%d?season_type=%s&season=%d", c.sleeperURL, playerID, reg, year)
 
 	data, err := c.getRequest(url)
 	if err != nil {

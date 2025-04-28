@@ -18,8 +18,7 @@ import (
 )
 
 const (
-	sleeperBaseURL         string = "https://api.sleeper.app/v1"
-	sleeperUndocumentedURL string = "https://api.sleeper.app"
+	sleeperBaseURL string = "https://api.sleeper.app"
 )
 
 var (

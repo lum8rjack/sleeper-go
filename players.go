@@ -78,7 +78,7 @@ type Player struct {
 func (c *Client) GetAllPlayers(sport string) (Players, error) {
 	players := Players{}
 
-	url := fmt.Sprintf("%s/players/%s", c.sleeperURL, sport)
+	url := fmt.Sprintf("%s/v1/players/%s", c.sleeperURL, sport)
 
 	data, err := c.getRequest(url)
 	if err != nil {
@@ -96,7 +96,7 @@ func (c *Client) GetAllPlayers(sport string) (Players, error) {
 // You should save this information on your own servers as this is not intended to be called every time you need to look up players due to the filesize being close to 5MB in size.
 // You do not need to call this endpoint more than once per day.
 func (c *Client) SaveAllPlayers(sport string, file string) (bool, error) {
-	url := fmt.Sprintf("%s/players/%s", c.sleeperURL, sport)
+	url := fmt.Sprintf("%s/v1/players/%s", c.sleeperURL, sport)
 
 	data, err := c.getRequest(url)
 	if err != nil {
@@ -136,7 +136,7 @@ func GetAllPlayers(file string) (Players, error) {
 func (c *Client) GetTrendingPlayers(sport string, trending_type string) ([]TrendingPlayer, error) {
 	trendingPlayer := []TrendingPlayer{}
 
-	url := fmt.Sprintf("%s/players/%s/trending/%s", c.sleeperURL, sport, trending_type)
+	url := fmt.Sprintf("%s/v1/players/%s/trending/%s", c.sleeperURL, sport, trending_type)
 
 	data, err := c.getRequest(url)
 	if err != nil {
@@ -153,7 +153,7 @@ func (c *Client) GetTrendingPlayers(sport string, trending_type string) ([]Trend
 func (c *Client) GetTrendingPlayersParams(sport string, trending_type string, hours int, limit int) ([]TrendingPlayer, error) {
 	trendingPlayer := []TrendingPlayer{}
 
-	url := fmt.Sprintf("%s/players/%s/trending/%s?loopback_hours=%d&limit=%d", c.sleeperURL, sport, trending_type, hours, limit)
+	url := fmt.Sprintf("%s/v1/players/%s/trending/%s?loopback_hours=%d&limit=%d", c.sleeperURL, sport, trending_type, hours, limit)
 
 	data, err := c.getRequest(url)
 	if err != nil {

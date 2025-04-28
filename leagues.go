@@ -249,7 +249,7 @@ type SportState struct {
 func (c *Client) GetAllLeagesForUser(user_id string, sport string, season string) ([]League, error) {
 	leagues := []League{}
 
-	url := fmt.Sprintf("%s/user/%s/leagues/%s/%s", c.sleeperURL, user_id, sport, season)
+	url := fmt.Sprintf("%s/v1/user/%s/leagues/%s/%s", c.sleeperURL, user_id, sport, season)
 
 	data, err := c.getRequest(url)
 	if err != nil {
@@ -266,7 +266,7 @@ func (c *Client) GetAllLeagesForUser(user_id string, sport string, season string
 func (c *Client) GetLeague(league_id string) (League, error) {
 	league := League{}
 
-	url := fmt.Sprintf("%s/league/%s", c.sleeperURL, league_id)
+	url := fmt.Sprintf("%s/v1/league/%s", c.sleeperURL, league_id)
 
 	data, err := c.getRequest(url)
 	if err != nil {
@@ -283,7 +283,7 @@ func (c *Client) GetLeague(league_id string) (League, error) {
 func (c *Client) GetRosters(league_id string) ([]Roster, error) {
 	rosters := []Roster{}
 
-	url := fmt.Sprintf("%s/league/%s/rosters", c.sleeperURL, league_id)
+	url := fmt.Sprintf("%s/v1/league/%s/rosters", c.sleeperURL, league_id)
 
 	data, err := c.getRequest(url)
 	if err != nil {
@@ -299,7 +299,7 @@ func (c *Client) GetRosters(league_id string) ([]Roster, error) {
 func (c *Client) GetLeagueUsers(league_id string) ([]LeagueUser, error) {
 	leagueUsers := []LeagueUser{}
 
-	url := fmt.Sprintf("%s/league/%s/users", c.sleeperURL, league_id)
+	url := fmt.Sprintf("%s/v1/league/%s/users", c.sleeperURL, league_id)
 
 	data, err := c.getRequest(url)
 	if err != nil {
@@ -316,7 +316,7 @@ func (c *Client) GetLeagueUsers(league_id string) ([]LeagueUser, error) {
 func (c *Client) GetMatchups(league_id string, week int) ([]Matchup, error) {
 	matchups := []Matchup{}
 
-	url := fmt.Sprintf("%s/league/%s/matchups/%d", c.sleeperURL, league_id, week)
+	url := fmt.Sprintf("%s/v1/league/%s/matchups/%d", c.sleeperURL, league_id, week)
 
 	data, err := c.getRequest(url)
 	if err != nil {
@@ -332,7 +332,7 @@ func (c *Client) GetMatchups(league_id string, week int) ([]Matchup, error) {
 func (c *Client) GetPlayoffsWinnersBracket(league_id string) ([]PlayoffRound, error) {
 	playoffRounds := []PlayoffRound{}
 
-	url := fmt.Sprintf("%s/league/%s/winners_bracket", c.sleeperURL, league_id)
+	url := fmt.Sprintf("%s/v1/league/%s/winners_bracket", c.sleeperURL, league_id)
 
 	data, err := c.getRequest(url)
 	if err != nil {
@@ -348,7 +348,7 @@ func (c *Client) GetPlayoffsWinnersBracket(league_id string) ([]PlayoffRound, er
 func (c *Client) GetPlayoffsLosersBracket(league_id string) ([]PlayoffRound, error) {
 	playoffRounds := []PlayoffRound{}
 
-	url := fmt.Sprintf("%s/league/%s/losers_bracket", c.sleeperURL, league_id)
+	url := fmt.Sprintf("%s/v1/league/%s/losers_bracket", c.sleeperURL, league_id)
 
 	data, err := c.getRequest(url)
 	if err != nil {
@@ -364,7 +364,7 @@ func (c *Client) GetPlayoffsLosersBracket(league_id string) ([]PlayoffRound, err
 func (c *Client) GetTransactions(league_id string, round int) ([]Transaction, error) {
 	transactions := []Transaction{}
 
-	url := fmt.Sprintf("%s/league/%s/transactions/%d", c.sleeperURL, league_id, round)
+	url := fmt.Sprintf("%s/v1/league/%s/transactions/%d", c.sleeperURL, league_id, round)
 
 	data, err := c.getRequest(url)
 	if err != nil {
@@ -380,7 +380,7 @@ func (c *Client) GetTransactions(league_id string, round int) ([]Transaction, er
 func (c *Client) GetLeagueTradedPicks(league_id string) ([]TradedPick, error) {
 	tradedPicks := []TradedPick{}
 
-	url := fmt.Sprintf("%s/league/%s/traded_picks", c.sleeperURL, league_id)
+	url := fmt.Sprintf("%s/v1/league/%s/traded_picks", c.sleeperURL, league_id)
 
 	data, err := c.getRequest(url)
 	if err != nil {
@@ -397,7 +397,7 @@ func (c *Client) GetLeagueTradedPicks(league_id string) ([]TradedPick, error) {
 func (c *Client) GetSportState(sport string) (SportState, error) {
 	sportstate := SportState{}
 
-	url := fmt.Sprintf("%s/state/%s", c.sleeperURL, sport)
+	url := fmt.Sprintf("%s/v1/state/%s", c.sleeperURL, sport)
 
 	data, err := c.getRequest(url)
 	if err != nil {
