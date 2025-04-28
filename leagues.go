@@ -2,7 +2,9 @@ package sleeper
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
+	"time"
 )
 
 type League struct {
@@ -246,10 +248,15 @@ type SportState struct {
 
 // Get all leagues for a specific user, sport, and season.
 // (GET `https://api.sleeper.app/v1/user/<user_id>/leagues/<sport>/<season>`)
-func (c *Client) GetAllLeagesForUser(user_id string, sport string, season string) ([]League, error) {
+func (c *Client) GetAllLeagesForUser(user_id string, sport string, season int) ([]League, error) {
 	leagues := []League{}
 
-	url := fmt.Sprintf("%s/v1/user/%s/leagues/%s/%s", c.sleeperURL, user_id, sport, season)
+	// Sleeper only has data from 2009 to present
+	if season < 2009 || season > time.Now().Year() {
+		return leagues, errors.New("invalid year - must be between 2008 and current")
+	}
+
+	url := fmt.Sprintf("%s/v1/user/%s/leagues/%s/%d", c.sleeperURL, user_id, sport, season)
 
 	data, err := c.getRequest(url)
 	if err != nil {

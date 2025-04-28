@@ -2,7 +2,9 @@ package sleeper
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
+	"time"
 )
 
 type Projections []struct {
@@ -80,6 +82,11 @@ type Projections []struct {
 // (GET `https://api.sleeper.app/projections/nfl/<season>/<week>?season_type=regular&position[]=FLEX&position[]=K&position[]=QB&position[]=RB&position[]=TE&position[]=WR&position[]=DEF`)
 func (c *Client) GetNflProjections(season int, week int) (Projections, error) {
 	projections := Projections{}
+
+	// Sleeper only has data from 2009 to present
+	if season < 2009 || season > time.Now().Year() {
+		return projections, errors.New("invalid year - must be between 2008 and current")
+	}
 
 	url := fmt.Sprintf("%s/projections/nfl/%d/%d?eason_type=regular&position[]=FLEX&position[]=K&position[]=QB&position[]=RB&position[]=TE&position[]=WR&position[]=DEF", c.sleeperURL, season, week)
 

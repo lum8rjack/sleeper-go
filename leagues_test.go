@@ -46,7 +46,7 @@ func TestGetAllLeagesForUser(t *testing.T) {
 	})
 
 	// Test successful request
-	leagues, err := client.GetAllLeagesForUser("123", "nfl", "2023")
+	leagues, err := client.GetAllLeagesForUser("123", "nfl", 2023)
 	if err != nil {
 		t.Errorf("Expected no error, got %v", err)
 	}

@@ -2,7 +2,9 @@ package sleeper
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
+	"time"
 )
 
 type Draft struct {
@@ -87,6 +89,11 @@ type TradedPick struct {
 // (GET `https://api.sleeper.app/v1/user/<user_id>/drafts/<sport>/<season>`)
 func (c *Client) GetDraftsForUser(user_id string, sport string, season int) ([]Draft, error) {
 	drafts := []Draft{}
+
+	// Sleeper only has data from 2009 to present
+	if season < 2009 || season > time.Now().Year() {
+		return drafts, errors.New("invalid year - must be between 2008 and current")
+	}
 
 	url := fmt.Sprintf("%s/v1/user/%s/drafts/%s/%d", c.sleeperURL, user_id, sport, season)
 
