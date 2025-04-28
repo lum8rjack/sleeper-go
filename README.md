@@ -89,45 +89,38 @@ func GetAllPlayers(file string) (Players, error)
 
 ## Sleeper API Implementation Status
 
-* [x] User
-    * [x] User object - `GET https://api.sleeper.app/v1/user/<username>`
-    * [x] User object - `GET https://api.sleeper.app/v1//user/<user_id>`
-* [x] Avatars
-    * [x] Full size URL - `GET https://sleepercdn.com/avatars/<avatar_id>`
-    * [x] Thumbnail URL - `GET https://sleepercdn.com/avatars/thumbs/<avatar_id>`
-* [x] Leagues
-    * [x] Get all leagues for user - `GET https://api.sleeper.app/v1/user/<user_id>/leagues/<sport>/<season>`
-    * [x] Get a specific league - `GET https://api.sleeper.app/v1/league/<league_id>`
-    * [x] Get rosters in a league - `GET https://api.sleeper.app/v1/league/<league_id>/rosters`
-    * [x] Get users in a league - `GET https://api.sleeper.app/v1/league/<league_id>/users`
-    * [x] Get matchups in a league - `GET https://api.sleeper.app/v1/league/<league_id>/matchups/<week>`
-    * [x] Get the playoff bracket (winners bracket) - `GET https://api.sleeper.app/v1/league/<league_id>/winners_bracket`
-    * [x] Get the playoff bracket (loses bracket) - `GET https://api.sleeper.app/v1/league/<league_id>/loses_bracket`
-    * [x] Get transactions - `GET https://api.sleeper.app/v1/league/<league_id>/transactions/<round>`
-    * [x] Get traded picks - `GET https://api.sleeper.app/v1/league/<league_id>/traded_picks`
-    * [x] Get sport state - `GET https://api.sleeper.app/v1/state/<sport>`
-* [x] Drafts
-    * [x] Get all drafts for user - `GET https://api.sleeper.app/v1/user/<user_id>/drafts/<sport>/<season>`
-    * [x] Get all drafts for a league - `GET https://api.sleeper.app/v1/league/<league_id>/drafts`
-    * [x] Get a specific draft - `GET https://api.sleeper.app/v1/draft/<draft_id>`
-    * [x] Get all picks in a draft - `GET https://api.sleeper.app/v1/draft/<draft_id>/picks`
-    * [x] Get traded picks in a draft - `GET https://api.sleeper.app/v1/draft/<draft_id>/traded_picks`
-* [x] Players
-    * [x] Get all players - `GET https://api.sleeper.app/v1/players/<sport>`
-    * [x] Trending players - `GET https://api.sleeper.app/v1/players/<sport>/trending/<type>?lookback_hours=<hours>&limit=<int>`
+The following table shows the implementation status of all known Sleeper API endpoints in this library. The table includes both officially documented endpoints from Sleeper's API documentation as well as several undocumented endpoints that were discovered during development. All endpoints, both documented and undocumented, have been fully implemented.
 
 
-## Undocumented Endpoint
-
-It was discovered that there are multiple undocumented API endpoints.
-
-* [ ] Undocumented
-    * [x] Get NFL player projections - `GET https://api.sleeper.app/projections/nfl/<season>/<week>?season_type=regular&position[]=FLEX&position[]=K&position[]=QB&position[]=RB&position[]=TE&position[]=WR&position[]=DEF`
-    * [x] Get NFL player season stats - `GET https://api.sleeper.app/stats/nfl/player/<player id>?season_type=<regular or post>&season=<season>`
-    * [x] Get specific NFL player - `GET https://api.sleeper.app/players/nfl/<player id>`
-    * [x] Get NFL players research - `GET https://api.sleeper.app/players/nfl/research/<regular or post>/<year>/<week>`
-    * [x] Get NFL team depth chart - `GET https://api.sleeper.app/players/nfl/<team>/depth_chart`
-    * [x] Get NFL schedule - `GET https://api.sleeper.app/schedule/nfl/<regular or post>/<year>`
+| Category       | Endpoint                                                                 | Description                                                                 | Implemented |
+|----------------|--------------------------------------------------------------------------|-----------------------------------------------------------------------------|-------------|
+| User           | `GET https://api.sleeper.app/v1/user/<username>`                         | Get user details by username                                                | ✅          |
+| User           | `GET https://api.sleeper.app/v1/user/<user_id>`                          | Get user details by user ID                                                 | ✅          |
+| Avatars        | `GET https://sleepercdn.com/avatars/<avatar_id>`                         | Get full-size avatar image                                                  | ✅          |
+| Avatars        | `GET https://sleepercdn.com/avatars/thumbs/<avatar_id>`                  | Get thumbnail avatar image                                                  | ✅          |
+| Leagues        | `GET https://api.sleeper.app/v1/user/<user_id>/leagues/<sport>/<season>` | Get all leagues a user is in for a specific sport and season                | ✅          |
+| Leagues        | `GET https://api.sleeper.app/v1/league/<league_id>`                      | Get details of a specific league                                            | ✅          |
+| Leagues        | `GET https://api.sleeper.app/v1/league/<league_id>/rosters`              | Get all rosters in a league                                                 | ✅          |
+| Leagues        | `GET https://api.sleeper.app/v1/league/<league_id>/users`                | Get all users in a league                                                   | ✅          |
+| Leagues        | `GET https://api.sleeper.app/v1/league/<league_id>/matchups/<week>`      | Get all matchups for a specific week in a league                            | ✅          |
+| Leagues        | `GET https://api.sleeper.app/v1/league/<league_id>/winners_bracket`      | Get the winners bracket for league playoffs                                 | ✅          |
+| Leagues        | `GET https://api.sleeper.app/v1/league/<league_id>/losers_bracket`       | Get the losers bracket for league playoffs                                  | ✅          |
+| Leagues        | `GET https://api.sleeper.app/v1/league/<league_id>/transactions/<round>` | Get all transactions for a specific round in a league                       | ✅          |
+| Leagues        | `GET https://api.sleeper.app/v1/league/<league_id>/traded_picks`         | Get all traded draft picks in a league                                      | ✅          |
+| Leagues        | `GET https://api.sleeper.app/v1/state/<sport>`                           | Get current state of a sport (season, week, etc.)                           | ✅          |
+| Drafts         | `GET https://api.sleeper.app/v1/user/<user_id>/drafts/<sport>/<season>`  | Get all drafts a user is in for a specific sport and season                 | ✅          |
+| Drafts         | `GET https://api.sleeper.app/v1/league/<league_id>/drafts`               | Get all drafts in a league                                                  | ✅          |
+| Drafts         | `GET https://api.sleeper.app/v1/draft/<draft_id>`                        | Get details of a specific draft                                             | ✅          |
+| Drafts         | `GET https://api.sleeper.app/v1/draft/<draft_id>/picks`                  | Get all picks in a draft                                                    | ✅          |
+| Drafts         | `GET https://api.sleeper.app/v1/draft/<draft_id>/traded_picks`           | Get all traded picks in a draft                                             | ✅          |
+| Players        | `GET https://api.sleeper.app/v1/players/<sport>`                         | Get all players for a sport (large response, use sparingly)                 | ✅          |
+| Players        | `GET https://api.sleeper.app/v1/players/<sport>/trending/<type>`         | Get trending players with optional lookback hours and limit                 | ✅          |
+| Undocumented   | `GET https://api.sleeper.app/projections/nfl/<season>/<week>`            | Get player projections for a specific NFL season and week                   | ✅          |
+| Undocumented   | `GET https://api.sleeper.app/stats/nfl/player/<player_id>`               | Get season stats for a specific NFL player                                  | ✅          |
+| Undocumented   | `GET https://api.sleeper.app/players/nfl/<player_id>`                    | Get detailed information for a specific NFL player                          | ✅          |
+| Undocumented   | `GET https://api.sleeper.app/players/nfl/research/<regular/post>/<year>/<week>` | Get player research data (ownership, start rates) for a specific week | ✅ |
+| Undocumented   | `GET https://api.sleeper.app/players/nfl/<team>/depth_chart`             | Get depth chart for a specific NFL team                                     | ✅          |
+| Undocumented   | `GET https://api.sleeper.app/schedule/nfl/<regular/post>/<year>`         | Get NFL schedule for a specific season (regular or postseason)              | ✅          |
 
 
 ## License
