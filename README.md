@@ -91,37 +91,35 @@ func GetAllPlayers(file string) (Players, error)
 
 The following table shows the implementation status of all known Sleeper API endpoints in this library. The table includes both officially documented endpoints from Sleeper's API documentation as well as several undocumented endpoints that were discovered during development. All endpoints, both documented and undocumented, have been fully implemented.
 
-
-| Category       | Endpoint                                                                 | Description                                                                 | Implemented |
+| Category       | Function                                                                 | Description                                                                 | Implemented |
 |----------------|--------------------------------------------------------------------------|-----------------------------------------------------------------------------|-------------|
-| User           | `GET https://api.sleeper.app/v1/user/<username>`                         | Get user details by username                                                | ✅          |
-| User           | `GET https://api.sleeper.app/v1/user/<user_id>`                          | Get user details by user ID                                                 | ✅          |
-| Avatars        | `GET https://sleepercdn.com/avatars/<avatar_id>`                         | Get full-size avatar image                                                  | ✅          |
-| Avatars        | `GET https://sleepercdn.com/avatars/thumbs/<avatar_id>`                  | Get thumbnail avatar image                                                  | ✅          |
-| Leagues        | `GET https://api.sleeper.app/v1/user/<user_id>/leagues/<sport>/<season>` | Get all leagues a user is in for a specific sport and season                | ✅          |
-| Leagues        | `GET https://api.sleeper.app/v1/league/<league_id>`                      | Get details of a specific league                                            | ✅          |
-| Leagues        | `GET https://api.sleeper.app/v1/league/<league_id>/rosters`              | Get all rosters in a league                                                 | ✅          |
-| Leagues        | `GET https://api.sleeper.app/v1/league/<league_id>/users`                | Get all users in a league                                                   | ✅          |
-| Leagues        | `GET https://api.sleeper.app/v1/league/<league_id>/matchups/<week>`      | Get all matchups for a specific week in a league                            | ✅          |
-| Leagues        | `GET https://api.sleeper.app/v1/league/<league_id>/winners_bracket`      | Get the winners bracket for league playoffs                                 | ✅          |
-| Leagues        | `GET https://api.sleeper.app/v1/league/<league_id>/losers_bracket`       | Get the losers bracket for league playoffs                                  | ✅          |
-| Leagues        | `GET https://api.sleeper.app/v1/league/<league_id>/transactions/<round>` | Get all transactions for a specific round in a league                       | ✅          |
-| Leagues        | `GET https://api.sleeper.app/v1/league/<league_id>/traded_picks`         | Get all traded draft picks in a league                                      | ✅          |
-| Leagues        | `GET https://api.sleeper.app/v1/state/<sport>`                           | Get current state of a sport (season, week, etc.)                           | ✅          |
-| Drafts         | `GET https://api.sleeper.app/v1/user/<user_id>/drafts/<sport>/<season>`  | Get all drafts a user is in for a specific sport and season                 | ✅          |
-| Drafts         | `GET https://api.sleeper.app/v1/league/<league_id>/drafts`               | Get all drafts in a league                                                  | ✅          |
-| Drafts         | `GET https://api.sleeper.app/v1/draft/<draft_id>`                        | Get details of a specific draft                                             | ✅          |
-| Drafts         | `GET https://api.sleeper.app/v1/draft/<draft_id>/picks`                  | Get all picks in a draft                                                    | ✅          |
-| Drafts         | `GET https://api.sleeper.app/v1/draft/<draft_id>/traded_picks`           | Get all traded picks in a draft                                             | ✅          |
-| Players        | `GET https://api.sleeper.app/v1/players/<sport>`                         | Get all players for a sport (large response, use sparingly)                 | ✅          |
-| Players        | `GET https://api.sleeper.app/v1/players/<sport>/trending/<type>`         | Get trending players with optional lookback hours and limit                 | ✅          |
-| Undocumented   | `GET https://api.sleeper.app/projections/nfl/<season>/<week>`            | Get player projections for a specific NFL season and week                   | ✅          |
-| Undocumented   | `GET https://api.sleeper.app/stats/nfl/player/<player_id>`               | Get season stats for a specific NFL player                                  | ✅          |
-| Undocumented   | `GET https://api.sleeper.app/players/nfl/<player_id>`                    | Get detailed information for a specific NFL player                          | ✅          |
-| Undocumented   | `GET https://api.sleeper.app/players/nfl/research/<regular/post>/<year>/<week>` | Get player research data (ownership, start rates) for a specific week | ✅ |
-| Undocumented   | `GET https://api.sleeper.app/players/nfl/<team>/depth_chart`             | Get depth chart for a specific NFL team                                     | ✅          |
-| Undocumented   | `GET https://api.sleeper.app/schedule/nfl/<regular/post>/<year>`         | Get NFL schedule for a specific season (regular or postseason)              | ✅          |
-
+| User           | `GetUserByUsername(username string)`                                     | Get user details by username                                                | ✅          |
+| User           | `GetUserByID(userID string)`                                             | Get user details by user ID                                                 | ✅          |
+| Avatars        | `GetAvatar(avatarID string)`                                             | Get full-size avatar image                                                  | ✅          |
+| Avatars        | `GetAvatarThumbnail(avatarID string)`                                    | Get thumbnail avatar image                                                  | ✅          |
+| Leagues        | `GetAllLeagesForUser(userID string, sport string, season int)`           | Get all leagues a user is in for a specific sport and season                | ✅          |
+| Leagues        | `GetLeague(leagueID string)`                                             | Get details of a specific league                                            | ✅          |
+| Leagues        | `GetRosters(leagueID string)`                                            | Get all rosters in a league                                                 | ✅          |
+| Leagues        | `GetLeagueUsers(leagueID string)`                                        | Get all users in a league                                                   | ✅          |
+| Leagues        | `GetMatchups(leagueID string, week int)`                                 | Get all matchups for a specific week in a league                            | ✅          |
+| Leagues        | `GetPlayoffsWinnersBracket(leagueID string)`                             | Get the winners bracket for league playoffs                                 | ✅          |
+| Leagues        | `GetPlayoffsLosersBracket(leagueID string)`                              | Get the losers bracket for league playoffs                                  | ✅          |
+| Leagues        | `GetTransactions(leagueID string, round int)`                            | Get all transactions for a specific round in a league                       | ✅          |
+| Leagues        | `GetTradedPicks(leagueID string)`                                        | Get all traded draft picks in a league                                      | ✅          |
+| Leagues        | `GetSportState(sport string)`                                            | Get current state of a sport (season, week, etc.)                           | ✅          |
+| Drafts         | `GetDraftsForUser(userID string, sport string, season int)`              | Get all drafts a user is in for a specific sport and season                 | ✅          |
+| Drafts         | `GetDraftsForLeague(leagueID string)`                                    | Get all drafts in a league                                                  | ✅          |
+| Drafts         | `GetDraft(draftID string)`                                               | Get details of a specific draft                                             | ✅          |
+| Drafts         | `GetAllDraftPicks(draftID string)`                                       | Get all picks in a draft                                                    | ✅          |
+| Drafts         | `GetDraftTradedPicks(draftID string)`                                    | Get all traded picks in a draft                                             | ✅          |
+| Players        | `GetAllPlayers(sport string)`                                            | Get all players for a sport (large response, use sparingly)                 | ✅          |
+| Players        | `GetTrendingPlayers(sport string, type string, hours int, limit int)`    | Get trending players with optional lookback hours and limit                 | ✅          |
+| Undocumented   | `GetNflProjections(year int, week int)`                                  | Get player projections for a specific NFL season and week                   | ✅          |
+| Undocumented   | `GetNflPlayerSeasonStats(playerID int, year int, postseason bool)`       | Get season stats for a specific NFL player                                  | ✅          |
+| Undocumented   | `GetNflPlayer(playerID int)`                                             | Get detailed information for a specific NFL player                          | ✅          |
+| Undocumented   | `GetNflPlayerResearch(year int, week int, postseason bool)`              | Get player research data (ownership, start rates) for a specific week       | ✅          |
+| Undocumented   | `GetNflTeamDepthChart(team string)`                                      | Get depth chart for a specific NFL team                                     | ✅          |
+| Undocumented   | `GetNflSchedule(year int, postseason bool)`                              | Get NFL schedule for a specific season (regular or postseason)              | ✅          |
 
 ## License
 
