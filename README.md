@@ -97,7 +97,7 @@ The following table shows the implementation status of all known Sleeper API end
 | User           | `GetUserByID(userID string)`                                             | Get user details by user ID                                                 | ✅          |
 | Avatars        | `GetAvatar(avatarID string)`                                             | Get full-size avatar image                                                  | ✅          |
 | Avatars        | `GetAvatarThumbnail(avatarID string)`                                    | Get thumbnail avatar image                                                  | ✅          |
-| Leagues        | `GetAllLeagesForUser(userID string, sport string, season int)`           | Get all leagues a user is in for a specific sport and season                | ✅          |
+| Leagues        | `GetAllLeaguesForUser(userID string, sport string, season int)`           | Get all leagues a user is in for a specific sport and season                | ✅          |
 | Leagues        | `GetLeague(leagueID string)`                                             | Get details of a specific league                                            | ✅          |
 | Leagues        | `GetRosters(leagueID string)`                                            | Get all rosters in a league                                                 | ✅          |
 | Leagues        | `GetLeagueUsers(leagueID string)`                                        | Get all users in a league                                                   | ✅          |
