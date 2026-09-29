@@ -153,7 +153,7 @@ type PlayerStats struct {
 func (c *Client) GetNflPlayer(playerID int) (Player, error) {
 	player := Player{}
 
-	url := fmt.Sprintf("%s/player/nfl/%d", c.sleeperURL, playerID)
+	url := fmt.Sprintf("%s/players/nfl/%d", c.sleeperURL, playerID)
 
 	data, err := c.getRequest(url)
 	if err != nil {
